@@ -1,0 +1,12 @@
+{% extends 'dash.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data" style="width:100%;">
+    {% csrf_token %}
+{{user_register_form_object|crispy}}
+<button type="submit" class="btn btn-warning">Submit</button>
+</form>
+
+{% endblock %}

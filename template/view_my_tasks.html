@@ -1,0 +1,36 @@
+{% extends 'user_dash.html' %}
+
+
+{% block content %}
+
+
+<div style="display:grid;grid-template-columns:1fr;grid-gap:20px;">
+
+{% for i in task_objects %}
+
+<div class="card" style="width:450px;height:400px;background-color:#E6E6FA;">
+<!--    <div style="position:relative;">-->
+<!--      <img src="{{i.image.url}}" class="img-fluid rounded-start" alt="image not found" style="width:100%;height:100%;position:absolute;top:0;left:0;">-->
+<!--    </div>-->
+      <div class="card-body">
+        <h5 class="card-title" style="color:green;">{{i.title}}</h5>
+        <p class="card-text text" style="color:brown;" >
+          Task Description:{{i.description}}<br>
+            {% if i.completed == 1 %}
+            <p style="color:red;">Task is completed!</p>
+          {% else %}
+           <p style="color:red;">Task is not completed yet!</p>
+            {% endif %}
+          </p>
+          <a href="{% url 'update_task' i.id %}" class="btn btn-info">View & Update Task</a><br>
+          <a href="{% url 'delete_task' i.id %}" class="btn btn-danger" style="margin-top:10px;" onclick="confirm_delete()">Delete Task</a><br><br>
+          <a href="{% url 'mark_task_complete' i.id %}" class="btn btn-success">Mark as Completed</a>
+          <a href="{% url 'mark_task_not_completed' i.id %}" class="btn btn-danger">Mark as Not Completed</a>
+      </div>
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

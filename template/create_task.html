@@ -1,0 +1,12 @@
+{% extends 'user_dash.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form method="POST"  style="width:100%;">
+    {% csrf_token %}
+{{task_form_object|crispy}}
+<button type="submit" class="btn btn-warning">Submit</button>
+</form>
+
+{% endblock %}
