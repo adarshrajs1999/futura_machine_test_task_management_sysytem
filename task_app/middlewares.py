@@ -1,6 +1,7 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.conf import settings
+from task_app import urls
 
 def login_required_middleware(get_response):
     # One-time configuration and initialization.
@@ -14,3 +15,12 @@ def login_required_middleware(get_response):
         response = get_response(request)
         return response
     return middleware
+
+def invalid_url_middleware(get_response):
+    def middleware(request):
+        response = get_response(request)
+        if response.status_code == 404:
+            return render(request,'404.html',status = 404)
+        return response
+    return middleware
+
