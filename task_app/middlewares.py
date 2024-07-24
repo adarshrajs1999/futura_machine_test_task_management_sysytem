@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.conf import settings
-from task_app import urls
 
 def login_required_middleware(get_response):
     # One-time configuration and initialization.
