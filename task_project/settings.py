@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'task_app.middlewares.login_required_middleware'
 ]
 
 ROOT_URLCONF = 'task_project.urls'
@@ -130,3 +131,11 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EXEMPT_URLS = [
+    'home',
+    'user_register',
+    'login_view'
+]
+
+LOGIN_URL = 'login_view'

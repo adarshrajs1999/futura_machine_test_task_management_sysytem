@@ -4,7 +4,7 @@ from task_app import views
 
 urlpatterns = [
     path('',views.home,name='home'),
-    path("dash/", views.dash, name="dash"),
+    path("dash/", views.dash, name='dash'),
     path('user_register/', views.user_register, name='user_register'),
     path('user_dash/', views.user_dash, name='user_dash'),
     path('login/', views.login_view, name='login_view'),
