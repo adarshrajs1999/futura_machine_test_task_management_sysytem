@@ -53,13 +53,15 @@ def create_task(request):
 
 def view_my_tasks(request):
     task_objects = Task.objects.filter(user = request.user)
-    return render(request, 'view_my_tasks.html',{'task_objects':task_objects})
+    paginator = Paginator(task_objects, 1)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'view_my_tasks.html',{'page_obj':page_obj})
 
 def view_all_tasks(request):
     query = request.GET.get('query', '')
     task_objects = Task.objects.filter(title__icontains=query) | Task.objects.filter(description__icontains=query)
-    paginator = Paginator(task_objects, 2)  # Show 25 contacts per page.
-
+    paginator = Paginator(task_objects, 1)  # Show 25 contacts per page.
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request, 'view_all_tasks.html',{'page_obj':page_obj})
